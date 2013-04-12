@@ -7,7 +7,7 @@ zenHttpbl is a spambot/harvester blocking tool. zenHttpbl is a Zenphoto plug-in 
 
 **Q.** What is Project Honey Pot and why would I want to use the HTTP:BL system?
 
-**A.** For the best description about what Project Honey Pot does I'll simply provide this link to their About Page and give you an excerpt:
+**A.** For the best description about what Project Honey Pot does I'll simply provide this link to their [About Page](http://www.projecthoneypot.org/about_us.php) and give you an excerpt:
 
 Project Honey Pot is the first and only distributed system for identifying spammers and the spambots they use to scrape addresses from your website. Using the Project Honey Pot system you can install addresses that are custom-tagged to the time and IP address of a visitor to your site. If one of these addresses begins receiving email we not only can tell that the messages are spam, but also the exact moment when the address was harvested and the IP address that gathered it.
 
