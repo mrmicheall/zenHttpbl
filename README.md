@@ -18,6 +18,10 @@ The HTTP Blacklist, or "http:BL", is a system that allows website administrators
 
 So... what I have done is written an plug-in implementation of the HTTP:BL API system for ease of use with Zenphoto.  You simply upload, enable, set your options and enjoy a spamfree site. There's obviously a more technical explanation of it, but do you want that?  Or do you just want to cut the spam? So what are we waiting for, right?
 
+
+##Disclaimer##
+
+Please note that this plugin may break some privacy laws, such as Germany as it sends data to US servers to check the IP. You are responsible for adhering to all Privacy Laws applicable for your location.
 __Special Note:__
 
 While you can certainly install and use the HTTP:BL service alone (after signing up for your free API key), I encourage you to be an active participant in the Project Honey Pot service to the fullest by installing your own honey pots or linking to Project Honey Pot's quick links.  The more people that use this portion of the service to track and catch spambots/harvesters/comment spammers, the more accurate and up-to-date the HTTP:BL service stays.
