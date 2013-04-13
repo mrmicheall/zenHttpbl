@@ -176,7 +176,7 @@ function zenHttpbl() {
 																header("Location: " . $hp . "");
 												} elseif (($ql != "") && ($ql != NULL)) {
 																header("HTTP/1.1 301 Moved Permanently ");
-																header("Location: " . $hp . "");
+																header("Location: " . $ql . "");
 												}
 												// Exit if redirect to Honey Pot link failed.
 												exit();
