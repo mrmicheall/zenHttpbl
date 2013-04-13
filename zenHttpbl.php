@@ -19,7 +19,7 @@ Author - Micheal Luttrull (micheall)
 $plugin_is_filter = 5|THEME_PLUGIN;
 $plugin_description = gettext_pl("This plug-in utilizes Project HoneyPot's HTTP:BL service to blacklist known spammers/harvesters/comment spammers and block their access to your site.");
 $plugin_author      = gettext_pl("Micheal Luttrull (micheall).");
-$plugin_version     = "1.4.4.3";
+$plugin_version     = "1.4.4.4";
 $plugin_URL         = "http://inthemdl.net/pages/zenhttpbl";
 
 /*
@@ -121,8 +121,8 @@ function zenHttpbl() {
 				// Get/Set variable defaults
 				$enabled      = getOption('zenHttpbl_enabled');
 				$apikey       = getOption('zenHttpbl_apikey');
-				$hpon         = getOption('zenHttpbl_usehoneypot');
 				$hp           = getOption('zenHttpbl_honeypotlink');
+				$ql			  = getOption('zenHttpbl_honeypotquicklink');
 				$blresult     = NULL;
 				$resolved     = false;
 				$ageofthreat  = false;
@@ -172,6 +172,9 @@ function zenHttpbl() {
 												//HTTP:BL request was resolved and threat is triggered from user defined options
 												//If Honey Pot Link defined, redirect to it.
 												if (($hp != "") && ($hp != NULL)) {
+																header("HTTP/1.1 301 Moved Permanently ");
+																header("Location: " . $hp . "");
+												} elseif (($ql != "") && ($ql != NULL)) {
 																header("HTTP/1.1 301 Moved Permanently ");
 																header("Location: " . $hp . "");
 												}
