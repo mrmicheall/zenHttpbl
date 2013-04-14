@@ -101,7 +101,10 @@ class zenHttpblOptions {
 																'key' => 'zenHttpbl_eventcount',
 																'type' => OPTION_TYPE_CHECKBOX,
 																'order' => 9,
-																'desc' => sprintf(gettext_pl('This enables tracking the # of bad events blocked.<br /><b>Currently # of blocked bad events: <em>%s</em></b><br />','zenHttpbl'),getOption('zenHttpbl_badevents'))
+																'desc' => sprintf(ngettext_pl('This enables tracking he # of bad events blocked.<br /><b>Currently <em>%s</em> event is blocked.</b>',
+																															'This enables tracking he # of bad events blocked.<br /><b>Currently <em>%s</em> events are blocked.</b>',
+																															getOption('zenHttpbl_badevents'),'zenHttpbl'),
+																															getOption('zenHttpbl_badevents'))
 												)
 								);
 				}
