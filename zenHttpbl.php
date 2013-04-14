@@ -1,24 +1,27 @@
 <?php
-/*
-Zenphoto plug-in implementation of Project HoneyPot's HTTP Blacklist service.
-zenHttpbl utilizes Project Honey Pot's HTTP:BL service to stop spammers, harvesters,
-and comment spammers in their tracks.  By utilizing the HTTP:BL API and making a DNS
-query to the PHP servers you are given information categorizing an IP from tracking
-records, identifying if that IP has been part of any suspicious or malicious activity.
+/**
+	Zenphoto plug-in implementation of Project HoneyPot's HTTP Blacklist service.
+	zenHttpbl utilizes Project Honey Pot's HTTP:BL service to stop spammers, harvesters,
+	and comment spammers in their tracks.  By utilizing the HTTP:BL API and making a DNS
+	query to the PHP servers you are given information categorizing an IP from tracking
+	records, identifying if that IP has been part of any suspicious or malicious activity.
 
-This implementation does all this before serving any web pages, and then (if the visitor
-passes the thresholds you set via options) either redirects to a honey pot, or serves a
-blank page.  Saving you traffic, and dramatically reducing annoying comment/content spammers.
+	This implementation does all this before serving any web pages, and then (if the visitor
+	passes the thresholds you set via options) either redirects to a honey pot, or serves a
+	blank page.  Saving you traffic, and dramatically reducing annoying comment/content spammers.
 
-As an added feature, if you specify a honey pot link or Project Honey Pot QuickLink, the
-plugin will add invisible links to your honey pot in an effort to help maintain and keep the
-HTTP:BL service up-to-date.
+	As an added feature, if you specify a honey pot link or Project Honey Pot QuickLink, the
+	plugin will add invisible links to your honey pot in an effort to help maintain and keep the
+	HTTP:BL service up-to-date.
 
-Author - Micheal Luttrull (micheall)
-*/
+	Author - Micheal Luttrull (micheall)
+
+ * @package plugins
+ * @subpackage spam
+ * */
 $plugin_is_filter = 5|THEME_PLUGIN;
 $plugin_description = gettext_pl("This plug-in utilizes Project HoneyPot's HTTP:BL service to blacklist known spammers/harvesters/comment spammers and block their access to your site.",'zenHttpbl');
-$plugin_author      = gettext_pl("Micheal Luttrull (micheall).",'zenHttpbl');
+$plugin_author      = "Micheal Luttrull (micheall)";
 $plugin_version     = "1.4.4.4";
 $plugin_URL         = "http://inthemdl.net/pages/zenhttpbl";
 
@@ -98,7 +101,10 @@ class zenHttpblOptions {
 																'key' => 'zenHttpbl_eventcount',
 																'type' => OPTION_TYPE_CHECKBOX,
 																'order' => 9,
-																'desc' => sprintf(gettext_pl('This enables tracking the # of bad events blocked.<br /><b>Currently # of blocked bad events: <em>%s</em></b><br />','zenHttpbl'),getOption('zenHttpbl_badevents'))
+																'desc' => sprintf(ngettext_pl('This enables tracking he # of bad events blocked.<br /><b>Currently <em>%s</em> event is blocked.</b>',
+																															'This enables tracking he # of bad events blocked.<br /><b>Currently <em>%s</em> events are blocked.</b>',
+																															getOption('zenHttpbl_badevents'),'zenHttpbl'),
+																															getOption('zenHttpbl_badevents'))
 												)
 								);
 				}
