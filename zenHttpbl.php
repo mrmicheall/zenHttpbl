@@ -39,7 +39,6 @@ Plugin option handling class
 */
 class zenHttpblOptions {
 				function zenHttpblOptions() {
-								setOptionDefault('zenHttpbl_enabled', 0);
 								setOptionDefault('zenHttpbl_apikey', NULL);
 								setOptionDefault('zenHttpbl_ageofthreat', 30);
 								setOptionDefault('zenHttpbl_threatrating', 25);
@@ -53,12 +52,6 @@ class zenHttpblOptions {
 
 				function getOptionsSupported() {
 								return array(
-												gettext_pl('Enable HTTP:BL?','zenHttpbl') => array(
-																'key' => 'zenHttpbl_enabled',
-																'type' => OPTION_TYPE_CHECKBOX,
-																'order' => 0,
-																'desc' => gettext_pl('Do you want to enable the Project HoneyPot HTTP:BL blacklist? <em>Note: This will be ignored if you have not specified your API KEY</em>','zenHttpbl')
-												),
 												gettext_pl('API Key','zenHttpbl') => array(
 																'key' => 'zenHttpbl_apikey',
 																'type' => 0,
@@ -119,7 +112,6 @@ Process HTTP:BL request
 */
 function zenHttpbl() {
 				// Get/Set variable defaults
-				$enabled      = getOption('zenHttpbl_enabled');
 				$apikey       = getOption('zenHttpbl_apikey');
 				$hp           = getOption('zenHttpbl_honeypotlink');
 				$ql			  = getOption('zenHttpbl_honeypotquicklink');
@@ -127,7 +119,7 @@ function zenHttpbl() {
 				$resolved     = false;
 				$ageofthreat  = false;
 				$threatrating = false;
-				if (($enabled != 1) || ($enabled == NULL) || ($apikey == NULL) || ($apikey == '')) {
+				if (empty($apikey)) {
 								//Meta Key for debug, disabled HTTPBL if turned off, or no API key.
 								//echo '<meta property="httpbl" content="disabled" />';
 				} else {
