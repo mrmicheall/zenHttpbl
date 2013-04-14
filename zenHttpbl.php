@@ -10,15 +10,15 @@ This implementation does all this before serving any web pages, and then (if the
 passes the thresholds you set via options) either redirects to a honey pot, or serves a
 blank page.  Saving you traffic, and dramatically reducing annoying comment/content spammers.
 
-As an added feature, if you specify a honey pot link or Project Honey Pot QuickLink, the 
+As an added feature, if you specify a honey pot link or Project Honey Pot QuickLink, the
 plugin will add invisible links to your honey pot in an effort to help maintain and keep the
 HTTP:BL service up-to-date.
 
 Author - Micheal Luttrull (micheall)
 */
 $plugin_is_filter = 5|THEME_PLUGIN;
-$plugin_description = gettext_pl("This plug-in utilizes Project HoneyPot's HTTP:BL service to blacklist known spammers/harvesters/comment spammers and block their access to your site.");
-$plugin_author      = gettext_pl("Micheal Luttrull (micheall).");
+$plugin_description = gettext_pl("This plug-in utilizes Project HoneyPot's HTTP:BL service to blacklist known spammers/harvesters/comment spammers and block their access to your site.",'zenHttpbl');
+$plugin_author      = gettext_pl("Micheal Luttrull (micheall).",'zenHttpbl');
 $plugin_version     = "1.4.4.4";
 $plugin_URL         = "http://inthemdl.net/pages/zenhttpbl";
 
@@ -39,7 +39,6 @@ Plugin option handling class
 */
 class zenHttpblOptions {
 				function zenHttpblOptions() {
-								setOptionDefault('zenHttpbl_enabled', 0);
 								setOptionDefault('zenHttpbl_apikey', NULL);
 								setOptionDefault('zenHttpbl_ageofthreat', 30);
 								setOptionDefault('zenHttpbl_threatrating', 25);
@@ -50,66 +49,60 @@ class zenHttpblOptions {
 								setOptionDefault('zenHttpbl_enabletest', NULL);
 								setOptionDefault('zenHttpbl_manualtestip', NULL);
 				}
-				
+
 				function getOptionsSupported() {
 								return array(
-												gettext_pl('Enable HTTP:BL?') => array(
-																'key' => 'zenHttpbl_enabled',
-																'type' => OPTION_TYPE_CHECKBOX,
-																'order' => 0,
-																'desc' => gettext_pl('Do you want to enable the Project HoneyPot HTTP:BL blacklist? <em>Note: This will be ignored if you have not specified your API KEY</em>')
-												),
-												gettext_pl('API Key') => array(
+												gettext_pl('API Key','zenHttpbl') => array(
 																'key' => 'zenHttpbl_apikey',
 																'type' => 0,
 																'order' => 1,
-																'desc' => gettext_pl('Enter your Project HoneyPot HTTP:BL API Key you obtained by signing up <a href="http://www.projecthoneypot.org/home.php" target="_blank">here</a>.')
+																'desc' => gettext_pl('Enter your Project HoneyPot HTTP:BL API Key you obtained by signing up <a href="http://www.projecthoneypot.org/home.php" target="_blank">here</a>.','zenHttpbl')
 												),
-												gettext_pl('Days since last bad event?') => array(
+												gettext_pl('Days since last bad event?','zenHttpbl') => array(
 																'key' => 'zenHttpbl_ageofthreat',
 																'type' => 0,
 																'order' => 2,
-																'desc' => gettext_pl('Specify the number of days to since last bad event before considering visitor to be safe.')
+																'desc' => gettext_pl('Specify the number of days to since last bad event before considering visitor to be safe.','zenHttpbl')
 												),
-												gettext_pl('Maximum allowable threat rating?') => array(
+												gettext_pl('Maximum allowable threat rating?','zenHttpbl') => array(
 																'key' => 'zenHttpbl_threatrating',
 																'type' => 0,
 																'order' => 3,
-																'desc' => gettext_pl('Enter allowable threat rating before being blocked: 0 (no threat) - 255 (maximum threat)  For more information visit <a href="http://www.projecthoneypot.org/threat_info.php" target="_blank">here</a>.')
+																'desc' => gettext_pl('Enter allowable threat rating before being blocked: 0 (no threat) - 255 (maximum threat)  For more information visit <a href="http://www.projecthoneypot.org/threat_info.php" target="_blank">here</a>.','zenHttpbl')
 												),
-												gettext_pl('Your Honey Pot Link?') => array(
+												gettext_pl('Your Honey Pot Link?','zenHttpbl') => array(
 																'key' => 'zenHttpbl_honeypotlink',
 																'type' => 0,
 																'order' => 5,
-																'desc' => gettext_pl('If you have enabled a honeypot, enter your HoneyPot here to redirect harmful visitors to. For more information visit <a href="http://www.projecthoneypot.org/?rf=90351" target="_blank">here</a>.')
+																'desc' => gettext_pl('If you have enabled a honeypot, enter your HoneyPot here to redirect harmful visitors to. For more information visit <a href="http://www.projecthoneypot.org/?rf=90351" target="_blank">here</a>.','zenHttpbl')
 												),
-												gettext_pl('Project Honey Pot Quick Link?') => array(
+												gettext_pl('Project Honey Pot Quick Link?','zenHttpbl') => array(
 																'key' => 'zenHttpbl_honeypotquicklink',
 																'type' => 0,
 																'order' => 6,
-																'desc' => gettext_pl('If you want to add a Project Honey Pot QuickLink, enter it here to redirect harmful visitors. For more information visit <a href="http://www.projecthoneypot.org/?rf=90351" target="_blank">here</a>.')
+																'desc' => gettext_pl('If you want to add a Project Honey Pot QuickLink, enter it here to redirect harmful visitors. For more information visit <a href="http://www.projecthoneypot.org/?rf=90351" target="_blank">here</a>.','zenHttpbl')
 												),
-												gettext_pl('Test with a manual IP?') => array(
+												gettext_pl('Test with a manual IP?','zenHttpbl') => array(
 																'key' => 'zenHttpbl_enabletest',
 																'type' => OPTION_TYPE_CHECKBOX,
 																'order' => 7,
-																'desc' => gettext_pl('This enables testing of zenHttpbl with a manul IP entry.')
+																'desc' => gettext_pl('This enables testing of zenHttpbl with a manul IP entry.','zenHttpbl')
 												),
-												gettext_pl('Enter test IP here.') => array(
+												gettext_pl('Enter test IP here.','zenHttpbl') => array(
 																'key' => 'zenHttpbl_manualtestip',
 																'type' => 0,
 																'order' => 8,
-																'desc' => gettext_pl('Want to test with a specific IP?  Enter it here.')
+																'desc' => gettext_pl('Want to test with a specific IP?  Enter it here.','zenHttpbl')
 												),
-												gettext_pl('Track # of bad events blocked?') => array(
+												gettext_pl('Track # of bad events blocked?','zenHttpbl') => array(
 																'key' => 'zenHttpbl_eventcount',
 																'type' => OPTION_TYPE_CHECKBOX,
 																'order' => 9,
-																'desc' => gettext_pl('This enables tracking the # of bad events blocked.<br /><b>Currently # of blocked bad events: <em>' . getOption('zenHttpbl_badevents') . '</em></b><br />')
+																'desc' => sprintf(gettext_pl('This enables tracking the # of bad events blocked.<br /><b>Currently # of blocked bad events: <em>%s</em></b><br />','zenHttpbl'),getOption('zenHttpbl_badevents'))
 												)
 								);
 				}
-				
+
 				function handleOption($option, $currentValue) {
 				}
 }
@@ -119,7 +112,6 @@ Process HTTP:BL request
 */
 function zenHttpbl() {
 				// Get/Set variable defaults
-				$enabled      = getOption('zenHttpbl_enabled');
 				$apikey       = getOption('zenHttpbl_apikey');
 				$hp           = getOption('zenHttpbl_honeypotlink');
 				$ql			  = getOption('zenHttpbl_honeypotquicklink');
@@ -127,7 +119,7 @@ function zenHttpbl() {
 				$resolved     = false;
 				$ageofthreat  = false;
 				$threatrating = false;
-				if (($enabled != 1) || ($enabled == NULL) || ($apikey == NULL) || ($apikey == '')) {
+				if (empty($apikey)) {
 								//Meta Key for debug, disabled HTTPBL if turned off, or no API key.
 								//echo '<meta property="httpbl" content="disabled" />';
 				} else {
@@ -179,7 +171,7 @@ function zenHttpbl() {
 																header("Location: " . $ql . "");
 												}
 												// Exit if redirect to Honey Pot link failed.
-												exit();
+												exitZP();
 								}
 				}
 }
@@ -187,7 +179,7 @@ function zenHoneyPotLinks() {
 				/*
 				Insert your Honey Pot links and/or Project Honey Pot QuickLinks into theme
 				files right after body and right before body close.
-				
+
 				I'm toying with the option of having checkbox options to select where in theme
 				to insert the invisible links.  Perhaps in the next version.
 				*/
