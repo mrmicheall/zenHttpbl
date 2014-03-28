@@ -22,7 +22,7 @@
 $plugin_is_filter = 5|THEME_PLUGIN;
 $plugin_description = gettext_pl("This plug-in utilizes Project HoneyPot's HTTP:BL service to blacklist known spammers/harvesters/comment spammers and block their access to your site.",'zenHttpbl');
 $plugin_author      = "Micheal Luttrull (micheall)";
-$plugin_version     = "1.4.4.4";
+$plugin_version     = "1.4.6";
 $plugin_URL         = "http://inthemdl.net/pages/zenhttpbl";
 
 /*
